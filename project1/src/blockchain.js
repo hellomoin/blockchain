@@ -68,7 +68,7 @@ class Blockchain {
 
             block.time = new Date().getTime().toString().slice(0,-3);
 
-            if(self.chain.length>0){
+            if(self.chain.length > 0){
                 block.previousBlockHash = self.chain[self.chain.length-1].hash; 
             }
             block.hash = SHA256(JSON.stringify(block)).toString();
@@ -78,6 +78,7 @@ class Blockchain {
             if (errors.length === 0 ){
                 self.chain.push(block); 
                 self.height++; 
+
                 resolve(block) 
             }else{
                 reject(errors);
@@ -93,7 +94,7 @@ class Blockchain {
      * The method return a Promise that will resolve with the message to be signed
      * @param {*} address 
      */
-     requestMessageOwnershipVerification(address) {
+    srequestMessageOwnershipVerification(address) {
         return new Promise((resolve) => {
             const OwnershipMessage = `${address}:${new Date().getTime().toString().slice(0, -3)}:starRegistry`;
             resolve(OwnershipMessage);    
@@ -144,7 +145,7 @@ class Blockchain {
      * Search on the chain array for the block that has the hash.
      * @param {*} hash 
      */
-     getBlockByHash(hash) {
+    getBlockByHash(hash) {
         let self = this;
         return new Promise((resolve, reject) => {
             const block = self.chain.filter(block => block.hash === hash)[0];
