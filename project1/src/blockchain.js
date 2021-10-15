@@ -68,9 +68,9 @@ class Blockchain {
             block.time = new Date().getTime().toString().slice(0,-3);
 
             if(self.chain.length>0){
-                block.previousBlockHash = self.chain[self.chain.length-1].hash; //get previous hash
+                block.previousBlockHash = self.chain[self.chain.length-1].hash; 
             }
-            block.hash = SHA256(JSON.stringify(block)).toString(); //calculate hash
+            block.hash = SHA256(JSON.stringify(block)).toString();
             
             //Validation
             let errors = await self.validateChain();
@@ -180,18 +180,18 @@ class Blockchain {
      * @param {*} address 
      */
     getStarsByWalletAddress(address) {
-        let self = this;                            //get blockchain
-        let stars = [];                             //create array of stars
+        let self = this;                            /
+        let stars = [];                            
         return new Promise((resolve, reject) => { 
-            self.chain.forEach(async(b)=> {        //loop on the blocks 
-            let data = await b.getBData();         //get decoded data from each block
+            self.chain.forEach(async(b)=> {
+            let data = await b.getBData();
             if(data){
-                if(data.owner === address){        //check if owner of the star is address passed in param
-                    stars.push(data);              //if yes add star's data to stars array
+                if(data.owner === address){
+                    stars.push(data);
                 }
             }
         })
-         resolve(stars);                            //return array of stars
+         resolve(stars); 
         });
     }
 
