@@ -65,6 +65,7 @@ class Blockchain {
         let self = this;
         return new Promise(async (resolve, reject) => {
             block.height = self.chain.length;
+            
             block.time = new Date().getTime().toString().slice(0,-3);
 
             if(self.chain.length>0){
