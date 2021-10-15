@@ -18,6 +18,8 @@ class BlockchainController {
         this.submitStar();
         this.getBlockByHash();
         this.getStarsByOwner();
+
+        // added endpoint for validate Chain
         this.validateChain();
     }
 
@@ -123,7 +125,7 @@ class BlockchainController {
     validateChain(){
         this.app.get("/validatechain", async(req, res) =>{
             let errorLog = await this.blockchain.validateChain();
-            if(errorLog.length != 0){
+            if(errorLog.length > 0){
                 return res.status(500).send("invalid");
             }else{
                 return res.status(200).send("valid");
