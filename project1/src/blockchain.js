@@ -180,18 +180,19 @@ class Blockchain {
      * @param {*} address 
      */
     getStarsByWalletAddress(address) {
-        let self = this;                            /
-        let stars = [];                            
+        let self = this;
+        let stars = []; 
+
         return new Promise((resolve, reject) => { 
-            self.chain.forEach(async(b)=> {
-            let data = await b.getBData();
+            self.chain.forEach(async(block)=> {
+            let data = await block.getBData();
             if(data){
                 if(data.owner === address){
                     stars.push(data);
                 }
             }
         })
-         resolve(stars); 
+        resolve(stars); 
         });
     }
 
