@@ -94,7 +94,7 @@ class Blockchain {
      * The method return a Promise that will resolve with the message to be signed
      * @param {*} address 
      */
-    srequestMessageOwnershipVerification(address) {
+    requestMessageOwnershipVerification(address) {
         return new Promise((resolve) => {
             const OwnershipMessage = `${address}:${new Date().getTime().toString().slice(0, -3)}:starRegistry`;
             resolve(OwnershipMessage);    
